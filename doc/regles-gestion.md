@@ -29,3 +29,8 @@
 - Un produit peut être commandé par 0 ou plusieurs utilisateurs
 - Un produit ne peut pas être commandé si son stock est à 0
 - Un produit peut-être consulté par tout le monde
+
+## Gestion des visiteurs :
+
+- Un visiteur peut créer un compte user
+- Un visiteur peut se connecter
