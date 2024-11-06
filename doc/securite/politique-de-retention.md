@@ -41,6 +41,15 @@ Rétention des sauvegardes journalières :
  
  Cela signifie que les 7 dernières copies de sauvegarde sont toujours disponibles, une pour chaque jour de la semaine, ce qui permet une récupération rapide en cas de besoin.
 
+### 🛡 La Règle de Sauvegarde 3-2-1
+
+Pour garantir la sécurité et la disponibilité des données, cette politique de sauvegarde suit la règle 3-2-1 :
+
+   3 copies des données : une copie de production et deux sauvegardes pour éviter la perte complète des données.
+   2 types de stockage différents : diversifier les supports (par exemple, un disque dur et le cloud)permet de limiter les risques en cas de défaillance matérielle ou de sinistre.
+   1 copie hors site : conserver une copie dans un lieu distant (cloud sécurisé,centre de données séparé)pour protéger les donnéescontre les catastrophes locales.
+
+En appliquant cette règle, notre politique assure une résilience et une disponibilité maximales, tout en facilitant la restauration rapide des données en cas de besoin.
 ### 📅 Automatisation des Sauvegardes
 
 Les sauvegardes sont automatisées avec cron pour exécuter un script de sauvegarde à 2h du matin chaque jour.
