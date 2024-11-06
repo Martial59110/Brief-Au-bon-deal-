@@ -9,8 +9,8 @@
 | Nom du Champ               | Type de Données    | Contrainte              | Description                                     |
 |----------------------------|--------------------|-------------------------|-------------------------------------------------|
 | `user_uuid`                | UUID              | PRIMARY KEY             | Identifiant unique de l'utilisateur             |
-| `user_pseudo`              | VARCHAR(255)      | NOT NULL                | Pseudo de l'utilisateur                         |
-| `username`                 | VARCHAR(255)      | UNIQUE, NOT NULL        | Identifiant unique utilisé par l'utilisateur    |
+| `user_pseudo`              | VARCHAR(100)      | NOT NULL                | Pseudo de l'utilisateur                         |
+| `username`                 | VARCHAR(100)      | UNIQUE, NOT NULL        | Identifiant unique utilisé par l'utilisateur    |
 | `user_password_created_at` | TIMESTAMP         | NOT NULL                | Date de création du mot de passe                |
 
 ---
@@ -20,7 +20,7 @@
 | Nom du Champ               | Type de Données    | Contrainte              | Description                                     |
 |----------------------------|--------------------|-------------------------|-------------------------------------------------|
 | `order_number`             | SERIAL            | PRIMARY KEY             | Numéro unique de la commande                    |
-| `order_total_cost_ht`      | DECIMAL(10, 2)    | NOT NULL                | Coût total HT de la commande                    |
+| `order_total_cost_ht`      | NUMERIC(2)    | NOT NULL                | Coût total HT de la commande                    |
 | `order_total_quantity`     | INTEGER           | NOT NULL                | Quantité totale de produits dans la commande    |
 | `created_at`               | TIMESTAMP         | NOT NULL                | Date de création de la commande                 |
 | `deliver_at`               | TIMESTAMP         |                         | Date de livraison prévue pour la commande       |
@@ -35,9 +35,9 @@
 | Nom du Champ               | Type de Données    | Contrainte              | Description                                     |
 |----------------------------|--------------------|-------------------------|-------------------------------------------------|
 | `product_uuid`             | UUID              | PRIMARY KEY             | Identifiant unique du produit                   |
-| `product_name`             | VARCHAR(255)      | NOT NULL                | Nom du produit                                  |
+| `product_name`             | VARCHAR(100)      | NOT NULL                | Nom du produit                                  |
 | `product_description`      | TEXT              |                         | Description du produit                          |
-| `product_price`            | DECIMAL(10, 2)    | NOT NULL                | Prix unitaire du produit                        |
+| `product_price`            | NUMERIC(2)    | NOT NULL                | Prix unitaire du produit                        |
 | `product_quantity`         | INTEGER           | NOT NULL                | Quantité disponible en stock                    |
 | `created_at`               | TIMESTAMP         | NOT NULL                | Date de création du produit                     |
 | `updated_at`               | TIMESTAMP         |                         | Dernière date de mise à jour du produit         |
