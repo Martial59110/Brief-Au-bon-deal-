@@ -227,6 +227,13 @@ GRANT SELECT,INSERT,UPDATE ON TABLE public.orders TO manager;
 
 
 --
+-- Name: SEQUENCE orders_order_number_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT ON SEQUENCE public.orders_order_number_seq TO martial;
+
+
+--
 -- Name: TABLE products; Type: ACL; Schema: public; Owner: postgres
 --
 
