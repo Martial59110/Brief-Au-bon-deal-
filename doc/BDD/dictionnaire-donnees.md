@@ -1,21 +1,60 @@
 
-# Dictionnaire de données
 
-| Nom de la Table | Nom du Champ               | Description                                               | Type de Données | Contraintes       | Exemples de Valeurs                      |
-|-----------------|----------------------------|-----------------------------------------------------------|-----------------|-------------------|------------------------------------------|
-| **Users**       | user_uuid                  | Identifiant unique de l'utilisateur                       | UUID            | Clé primaire      | "123e4567-e89b-12d3-a456-426614174000"   |
-|                 | user_pseudo                | Pseudo de l'utilisateur                                   | Texte           | Non nul           | "SuperUser123"                           |
-|                 | username                   | Nom de l'utilisateur (pour identification)                | Texte           | Non nul, Unique   | "jdoe"                                   |
-|                 | user_password_created_at   | Date de création du mot de passe de l'utilisateur         | Date/Heure      | Non nul           | "2023-09-15 10:45:00"                    |
-| **Orders**      | order_number               | Identifiant unique de la commande                         | Entier          | Clé primaire      | 1001                                     |
-|                 | order_total_cost_ht        | Coût total HT de la commande                              | Décimal         | Non nul           | 150.50                                   |
-|                 | order_total_quantity       | Quantité totale des produits dans la commande             | Entier          | Non nul           | 3                                        |
-|                 | created_at                 | Date de création de la commande                           | Date/Heure      | Non nul           | "2024-10-01 12:30:00"                    |
-|                 | deliver_at                 | Date de livraison prévue pour la commande                 | Date/Heure      |                   | "2024-10-07 09:00:00"                    |
-| **Products**    | product_uuid               | Identifiant unique du produit                             | UUID            | Clé primaire      | "456e7890-e89b-12d3-a456-426614174001"   |
-|                 | product_name               | Nom du produit                                            | Texte           | Non nul           | "Stylos bleus"                           |
-|                 | product_description        | Description détaillée du produit                          | Texte           |                   | "Stylos à bille bleue"                   |
-|                 | product_price              | Prix unitaire du produit                                  | Décimal         | Non nul           | 2.99                                     |
-|                 | product_quantity           | Quantité disponible en stock                              | Entier          |                   | 120                                      |
-|                 | created_at                 | Date de création du produit                               | Date/Heure      | Non nul           | "2023-08-15 11:00:00"                    |
-|                 | updated_at                 | Dernière date de mise à jour des informations du produit  | Date/Heure      |                   | "2023-10-01 15:45:00"                    |
+# 📑 Dictionnaire de Données
+
+---
+
+## Table `Users`
+
+| Nom du Champ               | Type de Données    | Contrainte              | Description                                     |
+|----------------------------|--------------------|-------------------------|-------------------------------------------------|
+| `user_uuid`                | UUID              | PRIMARY KEY             | Identifiant unique de l'utilisateur             |
+| `user_pseudo`              | VARCHAR(255)      | NOT NULL                | Pseudo de l'utilisateur                         |
+| `username`                 | VARCHAR(255)      | UNIQUE, NOT NULL        | Identifiant unique utilisé par l'utilisateur    |
+| `user_password_created_at` | TIMESTAMP         | NOT NULL                | Date de création du mot de passe                |
+
+---
+
+## Table `Orders`
+
+| Nom du Champ               | Type de Données    | Contrainte              | Description                                     |
+|----------------------------|--------------------|-------------------------|-------------------------------------------------|
+| `order_number`             | SERIAL            | PRIMARY KEY             | Numéro unique de la commande                    |
+| `order_total_cost_ht`      | DECIMAL(10, 2)    | NOT NULL                | Coût total HT de la commande                    |
+| `order_total_quantity`     | INTEGER           | NOT NULL                | Quantité totale de produits dans la commande    |
+| `created_at`               | TIMESTAMP         | NOT NULL                | Date de création de la commande                 |
+| `deliver_at`               | TIMESTAMP         |                         | Date de livraison prévue pour la commande       |
+| `user_uuid`                | UUID              | FOREIGN KEY             | Référence à l'identifiant de l'utilisateur      |
+
+> **Clé étrangère** : `user_uuid` référence `Users(user_uuid)`, créant une relation entre les commandes et leurs utilisateurs respectifs.
+
+---
+
+## Table `Products`
+
+| Nom du Champ               | Type de Données    | Contrainte              | Description                                     |
+|----------------------------|--------------------|-------------------------|-------------------------------------------------|
+| `product_uuid`             | UUID              | PRIMARY KEY             | Identifiant unique du produit                   |
+| `product_name`             | VARCHAR(255)      | NOT NULL                | Nom du produit                                  |
+| `product_description`      | TEXT              |                         | Description du produit                          |
+| `product_price`            | DECIMAL(10, 2)    | NOT NULL                | Prix unitaire du produit                        |
+| `product_quantity`         | INTEGER           | NOT NULL                | Quantité disponible en stock                    |
+| `created_at`               | TIMESTAMP         | NOT NULL                | Date de création du produit                     |
+| `updated_at`               | TIMESTAMP         |                         | Dernière date de mise à jour du produit         |
+
+---
+
+## Table d’Association `Belong`
+
+| Nom du Champ               | Type de Données    | Contrainte                                | Description                                     |
+|----------------------------|--------------------|-------------------------------------------|-------------------------------------------------|
+| `product_uuid`             | UUID              | PRIMARY KEY (partielle), FOREIGN KEY      | Référence à l'identifiant unique du produit     |
+| `order_number`             | INTEGER           | PRIMARY KEY (partielle), FOREIGN KEY      | Référence au numéro de commande                 |
+
+> **Clé primaire composée** : La combinaison (`product_uuid`, `order_number`) forme la clé primaire de la table `Belong`, garantissant l'unicité de chaque association produit-commande.
+>
+> **Clés étrangères** : 
+> - `product_uuid` référence `Products(product_uuid)`.
+> - `order_number` référence `Orders(order_number)`.
+
+---
