@@ -1,3 +1,7 @@
+
+/* INITIALISATION DE LA BDD (SANS DATA), MERCI DE RECUPERER 
+               LES SAUVEGARDES POUR LA DATA                    */
+
 -------------------------------------------------
 -- Étape 1 : Création de la base de données
 -------------------------------------------------
