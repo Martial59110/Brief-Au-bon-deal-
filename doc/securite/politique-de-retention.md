@@ -26,7 +26,7 @@ Réplication et stockage externe pour restaurer les données en cas de désastre
 
 ### 🕑 Fréquence des Sauvegardes
 
-   Sauvegarde journalière complète : Une copie complète de toutes les données critiques est effectuée chaquenuit à 2h du matin.
+   Sauvegarde journalière complète : Une copie complète de toutes les données critiques est effectuée chaque nuit à 2h du matin.
 
    Pourquoi la nuit ? Cette heure est choisie pour minimiser l'impact sur les utilisateurs et les systèmes en production, car l’activité est généralement plus faible la nuit. 
    
