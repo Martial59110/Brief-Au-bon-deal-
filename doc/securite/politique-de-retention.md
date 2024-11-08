@@ -28,6 +28,7 @@ Réplication et stockage externe pour restaurer les données en cas de désastre
 
    Sauvegarde journalière complète : Une copie complète de toutes les données critiques est effectuée chaque nuit à 2h du matin.
 
+
    Pourquoi la nuit ? Cette heure est choisie pour minimiser l'impact sur les utilisateurs et les systèmes en production, car l’activité est généralement plus faible la nuit. 
    
    Cela garantit que les performances ne sont pas affectées durant les heures de travail, tout en permettant des sauvegardes fiables et sans interruption.
@@ -54,6 +55,8 @@ En appliquant cette règle, notre politique assure une résilience et une dispon
 
 Les sauvegardes sont automatisées avec cron pour exécuter un script de sauvegarde à 2h du matin chaque jour.
 
+**Dans le cadre du brief la sauvegarde se fera toute les 4h**
+
 ### 🔓 Sécurité et Stockage des Sauvegardes
 
    Chiffrement des Sauvegardes :
@@ -66,4 +69,4 @@ Les sauvegardes sont automatisées avec cron pour exécuter un script de sauvega
 
    Contrôle d’Accès : 
    
-   Les fichiers de sauvegarde nesont accessibles qu’aux utilisateurs autorisés.
+   Les fichiers de sauvegarde ne sont accessibles qu’aux utilisateurs autorisés.
