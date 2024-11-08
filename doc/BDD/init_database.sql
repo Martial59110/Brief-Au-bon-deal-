@@ -49,7 +49,7 @@ CREATE TABLE Orders (
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     deliver_at TIMESTAMP,
     user_uuid UUID NOT NULL,
-    FOREIGN KEY (user_uuid) REFERENCES Users(user_uuid)
+    FOREIGN KEY (user_uuid) REFERENCES Users(user_uuid) ON UPDATE CASCADE
 );
 
 
@@ -68,8 +68,8 @@ CREATE TABLE Belong (
     product_uuid UUID NOT NULL,
     order_number INTEGER NOT NULL,
     PRIMARY KEY (product_uuid, order_number),
-    FOREIGN KEY (product_uuid) REFERENCES Products(product_uuid),
-    FOREIGN KEY (order_number) REFERENCES Orders(order_number)
+    FOREIGN KEY (product_uuid) REFERENCES Products(product_uuid) ON UPDATE CASCADE,
+    FOREIGN KEY (order_number) REFERENCES Orders(order_number) ON UPDATE CASCADE
 );
 
 
@@ -111,8 +111,12 @@ EXECUTE FUNCTION set_updated_at();
 
 ---------------------------------------------------------
 -- Étape 7 : Attribution des privilèges au rôle
--------------------------------------------------------------------
+---------------------------------------------------------
 
+-- Accorder les privilèges de sélection et de mise à jour au rôle manager
 GRANT SELECT, UPDATE ON TABLE Users, Orders, Products, Belong TO manager;
+
+-- Révoquer les privilèges de mise à jour pour les autres utilisateurs (sauf manager)
+REVOKE UPDATE ON TABLE Users, Orders, Products, Belong FROM PUBLIC;
 
 
